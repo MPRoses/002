@@ -10,6 +10,7 @@
   --color-right: #05070f;
   --color-left: #02030b;
   --cool-color: #0040b6;
+  --scrollbar-color: rgba(255,255,255,0);
 }
 
 img {
@@ -35,22 +36,22 @@ body {
 }
 
 .right {
-  width: 50vw;
+  width: 51vw;
   height: 100vh;
   position: fixed;
   top: 100vh;
-  right: 0;
+  right: -1vw;
   overflow: hidden;
   background-color: var(--color-right);
   transition: top 3s cubic-bezier(0,0.8,0,.99);
 }
 
 .open-right {
-  width: 50vw;
+  width: 51vw;
   height: 100vh;
   position: fixed;
   top: 0;
-  right: 0;
+  right: -1vw;
 }
 
 .left {
@@ -59,7 +60,7 @@ body {
   position: absolute;
   top: -100vh;
   overflow: hidden;
-  left: 0;
+  left: -.5vw;
   background-color: var(--color-left);
   transition: top 3s cubic-bezier(0,0.8,0,.99);
   z-index: 5;
@@ -67,7 +68,7 @@ body {
 
 .open-left {
   top: 0;
-  left: 0vw;
+  left: -.5vw;
 }
 
 #render-left {
@@ -163,7 +164,7 @@ body {
   height: 100%;
   position: relative;
   top: 100vh;
-  right: 0;
+  right: -0vh;
   transition: top 3s cubic-bezier(0,0.8,0,.99);
 }
 
@@ -320,7 +321,7 @@ body {
   line-height: 100%;
   z-index: 11;
   top: calc(3vw + 22.25px + 100%);
-  right: 3vw;
+  left: 75%;
   display: flex;
   transition: top 3s cubic-bezier(0,0.8,0,.99);
 

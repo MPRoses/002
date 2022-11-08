@@ -105,6 +105,11 @@ function Prog() {
      })
 
      $(document).on("scroll", function() {
+ 
+      $(":root").css("--scrollbar-color", "rgba(255,255,255, 1)");
+      setTimeout(() => {
+
+      }, 1000);
       if ($(document).scrollTop() > 100 ) {
         $(".nav-list-scrolling").addClass("nav-list-scrolling-open");
       } else if ($(document).scrollTop() < 100 ) {
@@ -133,7 +138,7 @@ function Prog() {
 
 
   return (
-    <div className="prog">
+    <div className="prog" style={{ overflowX: "hidden" }}>
       
       <Preloader />
 

@@ -7,12 +7,6 @@ import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-var Scrollbar = window.Scrollbar;
-      
-var options =  {
-  "damping": 0.12
-}
-Scrollbar.init(document.querySelector('#root'), options);
 
 
 root.render(
