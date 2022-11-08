@@ -1,0 +1,30 @@
+circle {
+    fill: white;
+    transition: fill .64s ease-in-out;
+    overflow: hidden;
+}
+
+.cursor {
+    position: fixed;
+    mix-blend-mode: difference;
+    opacity: 0;
+    z-index: 1000;
+    transition: top .05s ease-out, left .05s ease-out;
+    animation: comeIn 1.5s 1 ease-in forwards;
+    pointer-events:none;
+
+}
+
+@keyframes comeIn {
+    0% {
+        opacity: 0;
+    } 100% {
+        opacity: 1;
+    }
+}
+
+#cursor-circle {
+    transition: all .32s ease-in-out, transform .68s cubic-bezier(.02,.81,1,.95), opacity .5s cubic-bezier(.02,.81,1,.95);
+    position: absolute;
+    left: -12px; top: -12px;
+}
