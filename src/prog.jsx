@@ -11,6 +11,7 @@ import bluebg from './img/square.png';
 import arrow from './img/blue-arrow.png';
 import koftw from './img/koftw.png';
 
+
 function Prog() {
 
     $(function() {
@@ -238,7 +239,6 @@ it takes to make a modern brand truly shine, and I'm here to help with that.
       </div>
 
       <Cursor />
-
     </div>
 
   );
