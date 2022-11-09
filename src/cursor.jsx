@@ -13,7 +13,12 @@ function Cursor() {
             var xValue = (-500 + (e.clientX/1920) * 450);
             var yValue = (-250 + ((e.clientY/1080) * 45));
 
-            $("#txt1").css("background-position", `${xValue}px ${yValue}px `)
+            $("#txt1").css("background-position", `${xValue}px ${yValue}px `);
+
+            var rValue = (-5 + (e.clientX/960) * 10);
+            $("#leftEyeAngry").css("transform", `rotate(${rValue}deg)`);
+            $("#rightEyeAngry").css("transform", `rotate(${-rValue}deg)`);
+            
         });
 
 
@@ -32,10 +37,12 @@ function Cursor() {
         })
 
          $(document).on('mousedown', function(){
-            $('#cursor-circle').css("transform", "scale(1.15, 1.15)");
+            $('#cursor-circle').css("transform", "scale(1.25, 1.25)");
+            $("#cursor-circle").css("opacity", ".8"); 
         });
         $(document).on('mouseup', function(){
             $('#cursor-circle').css("transform", "scale(1, 1)");
+            $("#cursor-circle").css("opacity", "1"); 
         });
     })
 

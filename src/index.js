@@ -4,14 +4,17 @@ import './index.css';
 import Prog from './prog.jsx';
 import reportWebVitals from './reportWebVitals';
 
+import Cursor from "./cursor.jsx";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const butter = ReactDOM.createRoot(document.getElementById('butter'));
+const cursor = ReactDOM.createRoot(document.getElementById('cursor'));
 
-
-
-root.render(
-    
+butter.render(
     <Prog />
+);
+cursor.render(
+    
+    <Cursor />
 );
 
 // If you want to start measuring performance in your app, pass a function

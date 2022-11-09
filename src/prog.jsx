@@ -1,15 +1,18 @@
 import './prog.css';
 import $ from 'jquery';
+import { Animator, ScrollContainer, ScrollPage, batch, Fade, Sticky, StickyIn, FadeIn, ZoomIn } from "react-scroll-motion";
+
 
 import Preloader from './preloader';
-import Cursor from './cursor'; 
-import logo from './img/logosquarewhite.png';
-import twitter from './img/twitter.png';
-import linkedin from './img/linkedin.png';
-import email from './img/email.png';
-import bluebg from './img/square.png';
-import arrow from './img/blue-arrow.png';
-import koftw from './img/koftw.png';
+import Hero from './pages/hero.jsx';
+
+import Rectangle7 from './img/Rectangle7.png';
+import arrowDot1 from './img/1-arrow-dot.png';
+import arrowDot2 from './img/2-arrow-dot.png';
+import leftEye from './img/left-eye.png';
+import rightEye from './img/right-eye.png';
+import mouth from './img/mouth.png';
+
 
 
 function Prog() {
@@ -103,26 +106,41 @@ function Prog() {
      $("#central-start").on("mouseleave", function(){
       $("#central-start-arrow").css("transform", "rotate(0deg)");
      })
-
+     var g = true;
      $(document).on("scroll", function() {
- 
-      $(":root").css("--scrollbar-color", "rgba(255,255,255, 1)");
-      setTimeout(() => {
 
-      }, 1000);
+      if (g) {
+        $(":root").css("--scrollbar-color", "rgba(255,255,255, 0)");
+      } else {
+        $(":root").css("--scrollbar-color", "rgba(255,255,255, .05)");
+      }
       if ($(document).scrollTop() > 100 ) {
         $(".nav-list-scrolling").addClass("nav-list-scrolling-open");
       } else if ($(document).scrollTop() < 100 ) {
         $(".nav-list-scrolling").removeClass("nav-list-scrolling-open");
+      } 
+      if ($(document).scrollTop() > ($(window).height() - 750)) {
+        $("#about-me-header").addClass("about-me-header-open");
       }
-     })
-     
+      if ($(document).scrollTop() > ($(window).height() - 650)) {
+        $("#about-me-intro").addClass("about-me-intro-open");
+      }
 
+      $(".left-content").on("mouseenter", function() {
+        $("#rightEyeAngry").css("top", "-35%");
+        $("#leftEyeAngry").css("top", "-35%");
+      });
+      $(".left-content").on("mouseleave", function() {
+        $("#rightEyeAngry").css("top", "-50%");
+        $("#leftEyeAngry").css("top", "-50%");
+    });
+
+     })
      
       setTimeout(() => {
         $(".right").addClass("open-right");
         $(".left").addClass("open-left");
-        $("#header-main").addClass("header-main-2");
+        $("#header-main").css("top", "-9%");
         $(".content-left").addClass("open-content-left");
         $(".content-right").addClass("open-content-right");
         $(".nav-list").css("top", "calc(3vw + 22.25px)");
@@ -130,122 +148,98 @@ function Prog() {
           $('#render-right').css("opacity", "0");
           $('#render-right-blur').css("opacity", "0");
           $('.wave-container-right').css("opacity", "0");
+
           $(".left").css("overflow", "visible");
-          $("#root").css("max-height", "200vh");
-        }, 3000);
+          $("#butter").css("max-height", "200vh");
+          g = false;
+        }, 1500);
       }, 4000);
     })
 
 
   return (
+    <ScrollContainer>
     <div className="prog" style={{ overflowX: "hidden" }}>
-      
+    <ScrollPage>
       <Preloader />
+      <Animator animation={batch(Fade(), Sticky())}>
+        <Hero />
+      </Animator>
+      </ScrollPage>
+      <ScrollPage>
+      <div className="about-me">
+        <div className="line-1"></div>
+        <div className="line-2"></div>
 
-      <div className="right">
-      <div className="wave-container-right">
-            <div className="wave"></div>           
-        </div>
-        <img src={koftw} alt="koft" id="render-right-blur" />
-        <img src={koftw} alt="koft" id="render-right" />
-       </div>
-      <div className="left">
-      <div className="wave-container">
-            <div className="wave"></div>           
-        </div>
-        <img src={koftw} alt="koft" id="render-left-blur" />
-        <img src={koftw} alt="koft" id="render-left" />
-      </div>
-       <div className="content">
-        <div className="content-left">
-  
-          <img src={logo} alt="logo" id="logo" className="logo clickable" />
-          <img src={bluebg} alt="sideways square" id="squares" />
-          <h2 id="txt1">This is my<br></br><div id="txt3">Portfolio</div></h2>
-          <div id="seperator"></div>
-          <div id="socials">
-            <div className="socials-item clickable" id="item-twitter">
-              <svg height="44" width="44" className="socials-circle-svg">
-                <circle cx="22" cy="22" r="22" strokeWidth="0" className="socials-circle">
-                </circle>
-              </svg>
-            </div>
-            <img src={twitter} alt="twitter" className="socials-img" />
-            <div className="socials-item clickable" id="item-linkedin">
-              <svg height="44" width="44" className="socials-circle-svg">
-                <circle cx="22" cy="22" r="22" className="socials-circle" strokeWidth="0"></circle>
-              </svg>
-            </div>
-            <img src={linkedin} alt="linkedin" className="socials-img" />
-            <div className="socials-item clickable" id="item-email">
-              <svg height="44" width="44" className="socials-circle-svg">
-                <circle cx="22" cy="22" r="22" className="socials-circle" strokeWidth="0"></circle>
-              </svg>
-            </div>
-            <img src={email} alt="email" className="socials-img" />
-          </div>
-        </div>
-        <div className="content-right">
-        <div id="header-main">
-            Hello world!<br></br>&nbsp;&nbsp;&nbsp;&nbsp;I'm Jens<br></br><div id="vander">van der</div><div id="sloot">Sloot</div>
-        </div>
-          <div className="nav-list">
-            <div className="nav-list-item nav-list-active clickable">
-              Home
-            </div>
-            <svg className="nav-list-circle nav-list-circle-active">
-              <circle cx="4" cy="4" r="4"></circle>
-            </svg>
-            <div className="nav-list-item clickable">
-              Work
-            </div>
-            <svg className="nav-list-circle2">
-              <circle cx="4" cy="4" r="4"></circle>
-            </svg>
-            <div className="nav-list-item clickable">
-              Journey
-            </div>
-            <svg className="nav-list-circle3">
-              <circle cx="4" cy="4" r="4"></circle>
-            </svg>
-            <div className="nav-list-item clickable">
-              Contact
-            </div>
-            <svg className="nav-list-circle4">
-              <circle cx="4" cy="4" r="4"></circle>
-            </svg>
-          </div>
-          <div className="nav-list-scrolling">
-          </div>
-          <div className="central-section">
-            <div id="central-name">
-              -&nbsp;Jens van der Sloot
-            </div>
-            <div id="central-description">
-            Product Designer and
-            Developer, based in
-            Lisse, Netherlands.
-            </div>
-            <div id="central-text">
-            It’s certainly not easy to get noticed in today’s
-marketplace, but one thing is for certain: quality online representation is what
-it takes to make a modern brand truly shine, and I'm here to help with that.    
-            </div>
-            <div id="central-start" className="clickable">
-              Start Our Story
-              <img src={arrow} alt="arrow" id="central-start-arrow"/>
-            </div>
-          
-        </div>
-        
-          </div>
-        </div>
-        <div className="gradientback">
-      </div>
 
-      <Cursor />
+
+        <img src={Rectangle7} alt="rectangle" id="rec7" />
+
+        <div>
+
+        </div>
+        <div className="right-content">
+          <div id="about-me-header">
+            1. ABOUT ME
+          </div>
+          <div id="about-me-intro">
+          Hi! I’m Jens, a 17 year old web dev enthusiast. I have been gaining experience in this field for the past 2 and a half years managing small projects across the board. When I work on a project, the most important thing for me is to create beautiful websites that help people and make a difference. I can be as involved in each project as needed; from the core of the idea, to the creative design, to writing the code. My preferred environment to work in on a project would be React, but I am far from limited to that.
+          </div>
+        <div id="about-me-top3">
+            <div id="about-me-top3-txt1">
+              <div id="about-me-top3-line1"></div>
+              MY TOP 3 FAVOURITE<br></br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APPS
+              <div id="about-me-top3-line2"></div>
+            </div>
+            <div className="about-me-top3-app" id="top3-figma">
+              Figma
+              <img src={arrowDot2} id="arrowDot2" alt="arrow"/>
+              <div id="figma-comment1">
+                Wireframing
+              </div>
+              <div id="figma-comment2">
+                UI Designing
+              </div>
+            </div>
+            <div className="about-me-top3-app" id="top3-aae">
+              Adobe After Affects
+              <img src={arrowDot1} id="arrowDot1-aae" alt="arrow"/>
+              <div id="aae-comment1">
+                Motion Graphics
+              </div>
+            </div>
+            <div className="about-me-top3-app" id="top3-vsc">
+              Visual Studio Code
+              <img src={arrowDot1} id="arrowDot1-vsc" alt="arrow"/>
+              <div id="vsc-comment1">
+                Best text editor?
+                <br></br><span>I'll leave that up to you</span>
+              </div>
+            </div>
+        </div>
+        </div>
+        <div className="left-content">
+          <div className="eyes">
+            <img src={leftEye} alt="figma" id="leftEye" />
+            <div id="leftEyeAngryContainer">
+              <div id="leftEyeAngry"></div>
+            </div>
+            <img src={rightEye} alt="aae" id="rightEye" />
+            <div id="rightEyeAngryContainer">
+              <div id="rightEyeAngry"></div>
+            </div>
+          </div>
+            <div className="nose">
+              <div id="nose-line1"></div>
+              <div id="nose-line2"></div>
+            </div>
+            
+            <img src={mouth} alt="code" id="mouth" />
+        </div>
+      </div>
+      </ScrollPage>
     </div>
-
+    </ScrollContainer>
   );
 }
 
